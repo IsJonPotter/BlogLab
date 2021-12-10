@@ -5,7 +5,17 @@
       "ProjectGuid": "49b03038-96b9-4f60-88c3-202535686d00",
       "DisplayName": "BlogLab.Web",
       "ColorIndex": 0
+    },
+    "edbf3d0f-0022-4d37-aacb-2cd84380f1b1": {
+      "ProjectGuid": "edbf3d0f-0022-4d37-aacb-2cd84380f1b1",
+      "DisplayName": "BlogLab.Models",
+      "ColorIndex": 1
+    },
+    "f4fdd1b2-0aef-459b-a092-8bd1f7acee24": {
+      "ProjectGuid": "f4fdd1b2-0aef-459b-a092-8bd1f7acee24",
+      "DisplayName": "BlogLab.Repository",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }
