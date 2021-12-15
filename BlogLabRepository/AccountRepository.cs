@@ -66,6 +66,8 @@ namespace BlogLab.Repository
                     commandType: CommandType.StoredProcedure
                     );
             }
+
+            return applicationUser;
         }
     }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlogLab.Models.Photo;
 
@@ -7,7 +8,7 @@ namespace BlogLab.Repository
     {
          public Task<Photo> InsertAsync(PhotoCreate photoCreate, int applicationUserId);
          public Task<Photo> GetAsync(int photoId);
-         public Task<Photo> GetAllByUserIdAsync(int applicationUserId);
-         public Task<Photo> DeleteAsync(int photoId);
+         public Task<List<Photo>> GetAllByUserIdAsync(int applicationUserId);
+         public Task<int> DeleteAsync(int photoId);
     }
 }

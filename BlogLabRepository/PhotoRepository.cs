@@ -9,8 +9,8 @@ using Microsoft.Extensions.Configuration;
 
 namespace BlogLab.Repository
 {
-  public class PhotoRepository : IPhotoRepository
-  {
+    public class PhotoRepository : IPhotoRepository
+    {
 
     private readonly IConfiguration _config;
 

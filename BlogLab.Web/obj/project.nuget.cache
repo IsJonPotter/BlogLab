@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "aVR4+oAtnDZaxjNc4fRC5DssbEfswrcrTBEsxmhqW2AED3FS5gEvAE6oo2yaPiEH1SE0GCkvA6avpJ1ITEZxWg==",
+  "dgSpecHash": "yUrg/1UPVNPWzEz7eeC65Ugk2hRweKPfDI8BtxHk+KYxnRrgWE86ENd5Up3hrrJiOzfkdEishmH/FrOk0sf2AQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\roast\\Documents\\Employment\\FleonTech Training\\Build A Blog Using AspNet Core, Angular 11 And SQL Server\\BlogLab\\BlogLab.Web\\BlogLab.Web.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\roast\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512"
+  ],
   "logs": []
 }
