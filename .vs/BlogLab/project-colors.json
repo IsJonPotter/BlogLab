@@ -20,7 +20,17 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Miscellaneous Files",
       "ColorIndex": -1
+    },
+    "6f5ef86b-9e97-43cf-ab3d-1705187fdad3": {
+      "ProjectGuid": "6f5ef86b-9e97-43cf-ab3d-1705187fdad3",
+      "DisplayName": "BlogLab.Identity",
+      "ColorIndex": 3
+    },
+    "b9925c74-9689-4ea5-a95f-3385ffbdc2d0": {
+      "ProjectGuid": "b9925c74-9689-4ea5-a95f-3385ffbdc2d0",
+      "DisplayName": "BlogLab.Services",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 5
 }
