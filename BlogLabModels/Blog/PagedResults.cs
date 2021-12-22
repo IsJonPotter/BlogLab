@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BlogLab.Models.Blog
 {
-    public class PageResults<T>
+    public class PagedResults<T>
     {
         public IEnumerable<T> Items { get; set; }
 
