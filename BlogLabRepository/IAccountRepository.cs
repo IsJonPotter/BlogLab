@@ -13,7 +13,5 @@ namespace BlogLab.Repository
 
         public Task<ApplicationUserIdentity> GetByUsernameAsync(string normalizedUsername, 
             CancellationToken cancellationToken);
-
-
     }
 }

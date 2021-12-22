@@ -198,7 +198,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[3.1.22, )"
+              "version": "[3.1.0, )"
             }
           },
           "imports": [
@@ -331,23 +331,15 @@
           "dependencies": {
             "Dapper": {
               "target": "Package",
-              "version": "[2.0.123, )"
-            },
-            "Microsoft.Azure.ActiveDirectory.GraphClient": {
-              "target": "Package",
-              "version": "[2.1.1, )"
-            },
-            "Microsoft.Extensions.Configuration.Abstractions": {
-              "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[2.0.35, )"
             },
             "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
-              "version": "[6.0.0, )"
+              "version": "[3.1.9, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
-              "version": "[4.8.3, )"
+              "version": "[4.8.2, )"
             }
           },
           "imports": [

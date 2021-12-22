@@ -1,4 +1,4 @@
-using BlogLab.Models.Blog;
+﻿using BlogLab.Models.Blog;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BlogLab.Repository
 {
     public class BlogRepository : IBlogRepository
     {
-
         private readonly IConfiguration _config;
 
         public BlogRepository(IConfiguration config)
@@ -31,28 +31,27 @@ namespace BlogLab.Repository
                 affectedRows = await connection.ExecuteAsync(
                     "Blog_Delete",
                     new { BlogId = blogId },
-                    commandType: System.Data.CommandType.StoredProcedure);
+                    commandType: CommandType.StoredProcedure);
             }
 
             return affectedRows;
         }
 
-        public async Task<PageResults<Blog>> GetAllAsync(BlogPaging blogPaging)
+        public async Task<PagedResults<Blog>> GetAllAsync(BlogPaging blogPaging)
         {
-            var results = new PageResults<Blog>();
+            var results = new PagedResults<Blog>();
 
             using (var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection")))
             {
                 await connection.OpenAsync();
 
                 using (var multi = await connection.QueryMultipleAsync("Blog_GetAll",
-                    new
-                    {
+                    new { 
                         Offset = (blogPaging.Page - 1) * blogPaging.PageSize,
                         PageSize = blogPaging.PageSize
-                    },
+                    }, 
                     commandType: CommandType.StoredProcedure))
-                { 
+                {
                     results.Items = multi.Read<Blog>();
 
                     results.TotalCount = multi.ReadFirst<int>();
@@ -60,7 +59,6 @@ namespace BlogLab.Repository
             }
 
             return results;
-
         }
 
         public async Task<List<Blog>> GetAllByUserIdAsync(int applicationUserId)
@@ -72,9 +70,9 @@ namespace BlogLab.Repository
                 await connection.OpenAsync();
 
                 blogs = await connection.QueryAsync<Blog>(
-                    "Blog_GetAllByUserId",
-                    new { ApplcationuserId = applicationUserId },
-                    commandType: System.Data.CommandType.StoredProcedure);
+                    "Blog_GetByUserId",
+                    new { ApplicationUserId = applicationUserId },
+                    commandType: CommandType.StoredProcedure);
             }
 
             return blogs.ToList();
@@ -82,19 +80,19 @@ namespace BlogLab.Repository
 
         public async Task<List<Blog>> GetAllFamousAsync()
         {
-            IEnumerable<Blog> famousblogs;
+            IEnumerable<Blog> famousBlogs;
 
             using (var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection")))
             {
                 await connection.OpenAsync();
 
-                famousblogs = await connection.QueryAsync<Blog>(
+                famousBlogs = await connection.QueryAsync<Blog>(
                     "Blog_GetAllFamous",
-                    new {  },
-                    commandType: System.Data.CommandType.StoredProcedure);
+                    new { },
+                    commandType: CommandType.StoredProcedure);
             }
 
-            return famousblogs.ToList();
+            return famousBlogs.ToList();
         }
 
         public async Task<Blog> GetAsync(int blogId)
@@ -108,7 +106,7 @@ namespace BlogLab.Repository
                 blog = await connection.QueryFirstOrDefaultAsync<Blog>(
                     "Blog_Get",
                     new { BlogId = blogId },
-                    commandType: System.Data.CommandType.StoredProcedure);
+                    commandType: CommandType.StoredProcedure);
             }
 
             return blog;
@@ -117,17 +115,12 @@ namespace BlogLab.Repository
         public async Task<Blog> UpsertAsync(BlogCreate blogCreate, int applicationUserId)
         {
             var dataTable = new DataTable();
-            dataTable.Columns.Add("BlogId", typeof(string));
+            dataTable.Columns.Add("BlogId", typeof(int));
             dataTable.Columns.Add("Title", typeof(string));
             dataTable.Columns.Add("Content", typeof(string));
-            dataTable.Columns.Add("PhotoId", typeof(string));
+            dataTable.Columns.Add("PhotoId", typeof(int));
 
-            dataTable.Rows.Add(
-              blogCreate.BlogId,
-              blogCreate.Title,
-              blogCreate.Content,
-              blogCreate.PhotoId
-              );
+            dataTable.Rows.Add(blogCreate.BlogId, blogCreate.Title, blogCreate.Content, blogCreate.PhotoId);
 
             int? newBlogId;
 
@@ -135,11 +128,11 @@ namespace BlogLab.Repository
             {
                 await connection.OpenAsync();
 
-                newBlogId = await connection.ExecuteScalarAsync<int>(
+                newBlogId = await connection.ExecuteScalarAsync<int?>(
                     "Blog_Upsert",
-                    new { Blog = dataTable.AsTableValuedParameter("dbo.BlogType"), 
-                        ApplicationUserId = applicationUserId },
-                    commandType: CommandType.StoredProcedure);
+                    new { Blog = dataTable.AsTableValuedParameter("dbo.BlogType"), ApplicationUserId = applicationUserId },
+                    commandType: CommandType.StoredProcedure
+                    );
             }
 
             newBlogId = newBlogId ?? blogCreate.BlogId;

@@ -60,7 +60,7 @@ namespace BlogLab.Web.Controllers
             return Ok(blog);
         }
 
-        [HttpGet("user/{applicationUserId")]
+        [HttpGet("user/{applicationUserId}")]
         public async Task<ActionResult<List<Blog>>> GetByApplicationUserId(int applicationUserId)
         {
             var blogs = await _blogRepository.GetAllByUserIdAsync(applicationUserId);
@@ -77,7 +77,7 @@ namespace BlogLab.Web.Controllers
         }
 
         [Authorize]
-        [HttpDelete("{blogId")]
+        [HttpDelete("{blogId}")]
         public async Task<ActionResult<int>> Delete(int blogId)
         {
             int applicationUserId = int.Parse(User.Claims.First(i => i.Type == JwtRegisteredClaimNames.NameId).Value);

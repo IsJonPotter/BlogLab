@@ -14,7 +14,6 @@ namespace BlogLab.Repository
 {
     public class AccountRepository : IAccountRepository
     {
-
         private readonly IConfiguration _config;
 
         public AccountRepository(IConfiguration config)
@@ -40,14 +39,17 @@ namespace BlogLab.Repository
                 user.Email,
                 user.NormalizedEmail,
                 user.Fullname,
-                user.PasswordHash);
+                user.PasswordHash
+                );
 
             using (var connection = new SqlConnection(_config.GetConnectionString("DefaultConnection")))
             {
                 await connection.OpenAsync(cancellationToken);
+
                 await connection.ExecuteAsync("Account_Insert",
-                    new { Account = dataTable.AsTableValuedParameter("dbo.AccountType")}, commandType: CommandType.StoredProcedure);
+                    new { Account = dataTable.AsTableValuedParameter("dbo.AccountType") }, commandType: CommandType.StoredProcedure);
             }
+
             return IdentityResult.Success;
         }
 
@@ -70,5 +72,4 @@ namespace BlogLab.Repository
             return applicationUser;
         }
     }
-
 }
