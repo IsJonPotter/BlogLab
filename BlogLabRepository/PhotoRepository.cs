@@ -20,7 +20,7 @@ namespace BlogLab.Repository
             _config = config;
         }
 
-        public async Task<int> DeletetAsync(int photoId)
+        public async Task<int> DeleteAsync(int photoId)
         {
             int affectedRows = 0;
 

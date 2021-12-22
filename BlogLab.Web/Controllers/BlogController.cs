@@ -45,7 +45,7 @@ namespace BlogLab.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PageResults<Blog>>> GetAll([FromQuery] BlogPaging blogPaging)
+        public async Task<ActionResult<PagedResults<Blog>>> GetAll([FromQuery] BlogPaging blogPaging)
         {
             var blogs = await _blogRepository.GetAllAsync(blogPaging);
 
