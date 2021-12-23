@@ -1,3 +1,3 @@
 export class BlogPaging {
-  constructor(public blogId: number, public pageSize: number) {}
+  constructor(public page: number, public pageSize: number) {}
 }
