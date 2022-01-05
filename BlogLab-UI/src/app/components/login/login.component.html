@@ -14,14 +14,14 @@
             }"
             class="form-control form-control-lg"
             formControlName="username"
-            placeholder="username"
+            placeholder="Username"
           />
 
           <div
             *ngIf="hasError('username', 'required')"
             class="invalid-feedback"
           >
-            Username required
+            Username is required
           </div>
           <div
             *ngIf="
@@ -43,14 +43,14 @@
             }"
             class="form-control form-control-lg"
             formControlName="password"
-            placeholder="password"
+            placeholder="Password"
           />
 
           <div
             *ngIf="hasError('password', 'required')"
             class="invalid-feedback"
           >
-            Password required
+            Password is required
           </div>
           <div
             *ngIf="
