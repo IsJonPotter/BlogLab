@@ -91,6 +91,7 @@
     <button
       class="btn btn-danger text-light"
       *ngIf="!!getPhoto(blogForm.get('photoId').value)"
+      (click)="detachPhoto()"
     >
       Detach photo
     </button>
